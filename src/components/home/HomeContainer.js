@@ -17,7 +17,6 @@ export default function HomeContainer({incomeData, spendingData, totalIncome, to
     )
   })
 
-
   return (
     <div>
       <h1>DASHBOARD</h1>
