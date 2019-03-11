@@ -11,15 +11,22 @@ import './App.css';
 class App extends Component {
   state = {
     income: [
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '7-03-2019'},
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '7-03-2019'}
+      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-02-01'},
+      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-03-01'}
     ],
     spending: [
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '7-03-2019'}
+      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-02-25'}
     ],
     totalIncome: 0,
     totalSpending: 0,
-    saldo: 0
+    saldo: 0,
+    wantToEdit: false,
+    editTemp: {
+      index: 0,
+      desc: '',
+      amount: 0,
+      date: ''
+    }
   }
 
   componentDidMount(){
@@ -46,6 +53,19 @@ class App extends Component {
     }
   }
 
+
+  handleEditClick = (data,i) => {
+    this.setState({
+      wantToEdit: true,
+      editTemp: {
+        index: i,
+        desc: data.desc,
+        amount: data.amount,
+        date: data.date
+      }
+    })
+  }
+
   addIncome = income => {
     const newIncome  = [...this.state.income, income];
     this.setState({
@@ -63,6 +83,22 @@ class App extends Component {
     })
   }
 
+  editIncome = (income,i) => {
+    // console.log(income,i);
+    const newIncome = [...this.state.income];
+    newIncome[i] = income;
+    this.setState({
+      income: newIncome,
+      wantToEdit: false,
+      editTemp: {
+        index: 0,
+        desc: '',
+        amount: 0,
+        date: ''
+      }
+    })
+  }
+
   addSpending = spending => {
     const newSpending = [...this.state.spending, spending];
     this.setState({
@@ -77,6 +113,21 @@ class App extends Component {
 
     this.setState({
       spending: newSpending
+    })
+  }
+
+  editSpending = (spending, i) => {
+    const newSpending = [...this.state.spending];
+    newSpending[i] = spending;
+    this.setState({
+      spending: newSpending,
+      wantToEdit: false,
+      editTemp: {
+        index: 0,
+        desc: '',
+        amount: 0,
+        date: ''
+      }
     })
   }
 
@@ -109,7 +160,12 @@ class App extends Component {
               totalIncome={this.state.totalIncome}
               saldo={this.state.saldo}
               addIncome={this.addIncome}
-              removeIncome={this.removeIncome}/>} />
+              removeIncome={this.removeIncome}
+              wantToEdit={this.state.wantToEdit}
+              handleEditClick={this.handleEditClick}
+              editTemp={this.state.editTemp}
+              editIncome={this.editIncome}
+              />} />
               
             <Route 
               path="/spending" 
@@ -118,7 +174,11 @@ class App extends Component {
               totalSpending={this.state.totalSpending}
               saldo={this.state.saldo}
               addSpending={this.addSpending}
-              removeSpending={this.removeSpending}/>} />
+              removeSpending={this.removeSpending}
+              handleEditClick={this.handleEditClick}
+              wantToEdit={this.state.wantToEdit}
+              editTemp={this.state.editTemp}
+              editSpending={this.editSpending}/>} />
           </div>
         </div>
       </BrowserRouter>

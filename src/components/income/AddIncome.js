@@ -33,9 +33,10 @@ export default class AddIncome extends Component {
   }
 
   render() {
+
     return (
       <div className="row mb-3">
-        <div className="col">
+        <div className="col-md-3 col-sm-12 mb-2">
           <input 
             type="text" 
             className="form-control" 
@@ -44,7 +45,7 @@ export default class AddIncome extends Component {
             onChange={this.handleChange}
             value={this.state.desc}/>
         </div>
-        <div className="col">
+        <div className="col-md-3 col-sm-12 mb-2">
           <input 
             type="date" 
             className="form-control" 
@@ -53,7 +54,7 @@ export default class AddIncome extends Component {
             onChange={this.handleChange}
             value={this.state.date}/>
         </div>
-        <div className="col">
+        <div className="col-md-3 col-sm-12 mb-2">
           <input 
             type="number" 
             step="1" 
@@ -63,7 +64,7 @@ export default class AddIncome extends Component {
             onChange={this.handleChange}
             value={this.state.amount}/>
         </div>
-        <div className="col">
+        <div className="col-md-3 col-sm-12">
           <button 
             className="btn btn-success btn-block" 
             onClick={this.handleClick}>ADD</button>

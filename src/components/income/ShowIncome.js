@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ShowIncome({ incomeData, totalIncome, removeIncome}) {
+export default function ShowIncome({ incomeData, totalIncome, removeIncome, handleEditClick}) {
 
   const incomeDataList = incomeData.map((income, i) => {
     return(
@@ -10,7 +10,7 @@ export default function ShowIncome({ incomeData, totalIncome, removeIncome}) {
         <td>{income.date}</td>
         <td>{income.amount}</td>
         <td>
-          <button className="btn btn-primary mr-1">edit</button>
+          <button className="btn btn-primary mr-1" onClick={() => handleEditClick(income, i)}>edit</button>
           <button className="btn btn-danger" onClick={() => removeIncome(i)}>delete</button>
         </td>
       </tr>

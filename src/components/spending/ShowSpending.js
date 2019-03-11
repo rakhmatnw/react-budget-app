@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ShowSpending({ spendingData, totalSpending, removeSpending }) {
+export default function ShowSpending({ spendingData, totalSpending, removeSpending, handleEditClick }) {
 
   const spendingDataList = spendingData.map((spending, i) => {
     return(
@@ -10,7 +10,7 @@ export default function ShowSpending({ spendingData, totalSpending, removeSpendi
         <td>{spending.date}</td>
         <td>{spending.amount}</td>
         <td>
-          <button className="btn btn-primary mr-1">edit</button>
+          <button className="btn btn-primary mr-1" onClick={() => handleEditClick(spending, i)}>edit</button>
           <button className="btn btn-danger" onClick={() => removeSpending(i)}>delete</button>
         </td>
       </tr>
