@@ -10,13 +10,8 @@ import './App.css';
 
 class App extends Component {
   state = {
-    income: [
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-02-01'},
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-03-01'}
-    ],
-    spending: [
-      {desc: 'lorem ipsum dolor', amount: 100000, date: '2019-02-25'}
-    ],
+    income: [],
+    spending: [],
     totalIncome: 0,
     totalSpending: 0,
     saldo: 0,
