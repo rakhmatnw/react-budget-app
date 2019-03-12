@@ -25,14 +25,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    let totalIncome = this.state.income.reduce((acc, income) => acc + income.amount, 0);
-    let totalSpending = this.state.spending.reduce((acc, spending) => acc + spending.amount, 0)
-    let saldo = totalIncome - totalSpending;
-    this.setState({
-      totalIncome: totalIncome,
-      totalSpending: totalSpending,
-      saldo: saldo
-    });
+    localStorage.getItem('budget-app') === null ? localStorage.setItem('budget-app', JSON.stringify(this.state)) : this.setState(JSON.parse(localStorage.getItem('budget-app')));
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -45,9 +38,9 @@ class App extends Component {
         totalSpending: totalSpending,
         saldo: saldo
       });
+      localStorage.setItem('budget-app', JSON.stringify(this.state));
     }
   }
-
 
   handleEditClick = (data,i) => {
     this.setState({
@@ -76,6 +69,7 @@ class App extends Component {
     this.setState({
       income: newIncome
     })
+
   }
 
   editIncome = (income,i) => {

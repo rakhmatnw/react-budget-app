@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 
-export default class AddSpending extends Component {
+export default class EditForm extends Component {
   state = {
     desc: '',
     date: '',
     amount: 0
+  }
+
+  componentDidMount(){
+    this.setState({
+      desc: this.props.editTemp.desc,
+      date: this.props.editTemp.date,
+      amount: this.props.editTemp.amount
+    })
   }
 
   handleChange = e => {
@@ -24,14 +32,13 @@ export default class AddSpending extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    this.props.addSpending(this.state);
+    this.props.handleClick(this.state, this.props.editTemp.index);
     this.setState({
       desc: '',
       date: '',
       amount: 0
     })
   }
-
 
   render() {
     return (
@@ -57,14 +64,17 @@ export default class AddSpending extends Component {
         <div className="col-md-3 col-sm-12 mb-2">
           <input 
             type="number" 
+            step="1" 
             className="form-control" 
             placeholder="Amount" 
             id="amount" 
             onChange={this.handleChange}
             value={this.state.amount}/>
         </div>
-        <div className="col-md-3 col-sm-12 mb-2">
-          <button className="btn btn-success btn-block" onClick={this.handleClick}>ADD</button>
+        <div className="col-md-3 col-sm-12">
+          <button 
+            className="btn btn-success btn-block" 
+            onClick={this.handleClick}>SAVE</button>
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class AddIncome extends Component {
+export default class AddForm extends Component {
   state = {
     desc: '',
     date: '',
@@ -24,7 +24,7 @@ export default class AddIncome extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    this.props.addIncome(this.state);
+    this.props.handleClick(this.state);
     this.setState({
       desc: '',
       date: '',

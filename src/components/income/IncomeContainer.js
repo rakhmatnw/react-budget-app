@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AddIncome from './AddIncome';
 import ShowIncome from './ShowIncome';
-import EditIncome from './EditIncome';
 import Card from '../card/DashboardCard';
+import AddForm from '../form/AddForm';
+import EditForm from '../form/EditForm';
 
 import '../../App.css';
 
@@ -20,17 +20,15 @@ export default class IncomeContainer extends Component {
         </div>
 
         {this.props.wantToEdit ?
-          <EditIncome 
+          <EditForm 
             editTemp={this.props.editTemp}
-            editIncome={this.props.editIncome}
+            handleClick={this.props.editIncome}
             />
           :
-          <AddIncome 
-            addIncome={this.props.addIncome}
-            />
+          <AddForm handleClick={this.props.addIncome}/>
         }
 
-        
+
         <ShowIncome 
           incomeData={this.props.incomeData}
           totalIncome={this.props.totalIncome}

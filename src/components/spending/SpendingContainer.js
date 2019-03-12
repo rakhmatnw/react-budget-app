@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AddSpending from './AddSpending';
 import ShowSpending from './ShowSpending';
-import EditSpending from './EditSpending';
 import Card from '../card/DashboardCard';
+import AddForm from '../form/AddForm';
+import EditForm from '../form/EditForm';
 
 import '../../App.css';
 
@@ -20,13 +20,13 @@ export default class SpendingContainer extends Component {
         </div>
 
         {this.props.wantToEdit ?
-          <EditSpending 
+          <EditForm 
             editTemp={this.props.editTemp}
-            editSpending={this.props.editSpending}
+            handleClick={this.props.editSpending}
             />
           :
-          <AddSpending 
-            addSpending={this.props.addSpending}
+          <AddForm 
+            handleClick={this.props.addSpending}
             />
         }
 
